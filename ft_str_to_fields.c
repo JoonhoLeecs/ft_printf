@@ -6,14 +6,14 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:23:16 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 11:03:14 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:53:05 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "libftprintf.h"
 
-char	*ft_str_to_fields(char *str, va_list va_ptr, t_list **fields)
+char	*ft_str_to_fields(const char *str, va_list va_ptr, t_list **fields)
 {
 	char	*ptr_next_field;
 	char	*new_content;

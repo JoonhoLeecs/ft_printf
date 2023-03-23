@@ -6,14 +6,14 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 10:58:42 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 11:01:33 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:54:56 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "libftprintf.h"
 
-char	*ft_terminate_on_error(char *str, t_list **fields)
+char	*ft_terminate_on_error(const char *str, t_list **fields)
 {
 	if (*fields != 0)
 	{

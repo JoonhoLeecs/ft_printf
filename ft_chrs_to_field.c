@@ -6,16 +6,16 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 10:14:56 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 12:30:45 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:54:03 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "libftprintf.h"
 
-static char	*ft_find_start_of_next(char *str);
+static char	*ft_find_start_of_next(const char *str);
 
-char	*ft_chrs_to_field(char *str, t_list **fields)
+char	*ft_chrs_to_field(const char *str, t_list **fields)
 {
 	char	*ptr_next_field;
 	char	*new_content;
@@ -32,7 +32,7 @@ char	*ft_chrs_to_field(char *str, t_list **fields)
 	return (ptr_next_field);
 }
 
-static char	*ft_find_start_of_next(char *str)
+static char	*ft_find_start_of_next(const char *str)
 {
 	char	*ptr;
 

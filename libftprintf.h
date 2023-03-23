@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:30:00 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 14:27:36 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:59:33 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
+typedef long long int	t_ull;
+
 int		ft_printf(const char *str, ...);
-char	*ft_str_to_fields(char *str, va_list va_ptr, t_list **fields);
-char	*ft_chrs_to_field(char *str, t_list **fields);
-char	*ft_terminate_on_error(char *str, t_list **fields);
-char	*ft_convert_format_tags(char *str, va_list va_ptr, t_list **fields);
+char	*ft_str_to_fields(const char *str, va_list va_ptr, t_list **fields);
+char	*ft_chrs_to_field(const char *str, t_list **fields);
+char	*ft_terminate_on_error(const char *str, t_list **fields);
+char	*ft_convert_format(const char *str, va_list va_ptr, t_list **fields);
 
 char	*ft_chr_to_str(char c);
 char	*ft_ptraddress_to_str(void *ptr);

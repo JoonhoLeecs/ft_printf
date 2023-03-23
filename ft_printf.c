@@ -6,14 +6,14 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:01:40 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 12:26:43 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:01:43 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "libftprintf.h"
 
-static void	ft_putstr(char *s);
+static void	ft_putstr(void *s);
 
 int	ft_printf(const char *str, ...)
 {
@@ -26,7 +26,7 @@ int	ft_printf(const char *str, ...)
 	va_start(va_ptr, str);
 	fields = 0;
 	while (*str)
-		str = ft_str_to_fields(str, va_ptr, fields);
+		str = ft_str_to_fields(str, va_ptr, &fields);
 	num_char = ft_lstiter_strlensum(fields);
 	if (num_char != -1)
 		ft_lstiter(fields, &ft_putstr);
@@ -35,7 +35,10 @@ int	ft_printf(const char *str, ...)
 	return (num_char);
 }
 
-static void	ft_putstr(char *s)
+static void	ft_putstr(void *s)
 {
-	ft_putstr_fd(s, 1);
+	char	*ptr;
+
+	ptr = (char *)s;
+	ft_putstr_fd(ptr, 1);
 }
