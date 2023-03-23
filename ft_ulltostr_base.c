@@ -6,12 +6,12 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:22:14 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 15:14:06 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:38:58 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	base_length_check(char *base);
 static int	count_digit(t_ull nbr_decimal, char *base_to);

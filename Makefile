@@ -33,6 +33,7 @@ make_all : $(LIBFT) $(OBJECTS)
 
 $(LIBFT) :
 	$(MAKE) bonus -C $(DIR_LIBFT)
+	cp $(DIR_LIBFT)/$(LIBFT) $(LIBFT)
 	cp $(DIR_LIBFT)/$(LIBFT) $(NAME)
 
 # bonus : make_bonus
@@ -45,6 +46,7 @@ $(LIBFT) :
 clean :
 	cd $(DIR_LIBFT); $(MAKE) clean
 	rm -f $(OBJECTS)
+	rm -f $(LIBFT)
 	rm -f make_all
 
 fclean :

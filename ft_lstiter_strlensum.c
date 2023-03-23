@@ -6,12 +6,12 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:09:40 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 10:53:26 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:30:36 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_lstiter_strlensum(t_list *lst)
 {

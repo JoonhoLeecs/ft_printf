@@ -6,19 +6,19 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 10:58:42 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 15:13:45 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:38:51 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-char	*ft_terminate_on_error(const char *str, t_list **fields)
+char	*ft_terminate_on_error(char *str, t_list **fields)
 {
 	if (*fields != 0)
 	{
 		free(ft_lstlast(*fields)->content);
 		ft_lstlast(*fields)->content = 0;
 	}
-	return ((char *)(str + ft_strlen(str)));
+	return (str + ft_strlen(str));
 }
