@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:22:14 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 14:51:47 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:14:06 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	recur_ulltostr(char *result, int *res_ind, t_ull nbr, char *base);
 char	*ft_ulltostr_base(t_ull nbr_decimal, char *base_to)
 {
 	char	*result;
-	int		l_base;
 	int		res_ind;
 
 	result = (char *)malloc(count_digit(nbr_decimal, base_to) + 1);

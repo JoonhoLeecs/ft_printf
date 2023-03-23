@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 10:36:47 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 14:59:01 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:22:22 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,20 @@ char	*ft_convert_format(const char *str, va_list va_ptr, t_list **fields)
 	if (new_field == 0)
 		return (ft_terminate_on_error(str, fields));
 	ft_lstadd_back(fields, new_field);
-	return (str + 2);
+	return ((char *)(str + 2));
 }
 
 static char	*ft_format_tag_to_raw_str(const char *str, va_list va_ptr)
 {
 	char	*format_specifier_pool;
 	char	*specifier;
-	char	*raw_str;
 
 	format_specifier_pool = "cspdiuxX%";
 	specifier = ft_strchr(format_specifier_pool, *(str + 1));
 	if (specifier == 0)
 		return (0);
 	else if (specifier - format_specifier_pool == 0)
-		return (ft_chr_to_str(va_arg(va_ptr, char)));
+		return (ft_chr_to_str(va_arg(va_ptr, int)));
 	else if (specifier - format_specifier_pool == 1)
 		return (ft_strdup(va_arg(va_ptr, char *)));
 	else if (specifier - format_specifier_pool == 2)
@@ -52,9 +51,10 @@ static char	*ft_format_tag_to_raw_str(const char *str, va_list va_ptr)
 	else if (specifier - format_specifier_pool == 5)
 		return (ft_ulltostr_base(va_arg(va_ptr, unsigned int), "0123456789"));
 	else if (specifier - format_specifier_pool == 6)
-		return (ft_longtosre_base(va_arg(va_ptr, int), "0123456789abcdef"));
+		return (ft_ulltostr_base(va_arg(va_ptr, unsigned int), "0123456789abcdef"));
 	else if (specifier - format_specifier_pool == 7)
-		return (ft_longtostr_base(va_arg(va_ptr, int), "0123456789ABCDEF"));
+		return (ft_ulltostr_base(va_arg(va_ptr, unsigned int), "0123456789ABCDEF"));
 	else if (specifier - format_specifier_pool == 8)
 		return (ft_chr_to_str('%'));
+	return (0);
 }

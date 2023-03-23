@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:18:47 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 14:30:37 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:11:56 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	recur_longtostr(char *result, int *res_ind, long nbr, char *base);
 char	*ft_longtostr_base(long nbr_decimal, char *base_to)
 {
 	char	*result;
-	int		l_base;
 	int		res_ind;
 
 	result = (char *)malloc(count_digit(nbr_decimal, base_to) + 1);

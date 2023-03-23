@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCDIR_LIBFT = ./libft/
-NAME_LIBFT = libft.a
+DIR_LIBFT = ./libft/
+LIBFT = libft.a
 SRC = ft_chr_to_str.c \
 		ft_chrs_to_field.c \
 		ft_convert_format.c \
@@ -26,32 +26,32 @@ all : $(NAME)
 
 $(NAME) : make_all
 
-make_all : $(OBJECTS)
-			cd $(SRCDIR_LIBFT)
-			$(MAKE) bonus
-			cp $(NAME_LIBFT) ../$(NAME)
-			$(AR) rcs $(NAME) $^
+make_all : $(LIBFT) $(OBJECTS)
+			$(AR) rcs $(NAME) $(OBJECTS)
 			@touch make_all
-			@rm -f make_bonus
+# @rm -f make_bonus
 
-bonus : make_bonus
+$(LIBFT) :
+	$(MAKE) bonus -C $(DIR_LIBFT)
+	cp $(DIR_LIBFT)/$(LIBFT) $(NAME)
 
-make_bonus : $(OBJECTS) $(OBJECTS_BONUS)
-			$(AR) rcs $(NAME) $^
-			@touch make_bonus
-			@rm -f make_all
+# bonus : make_bonus
+
+# make_bonus : $(OBJECTS) $(OBJECTS_BONUS)
+# 			$(AR) rcs $(NAME) $^
+# 			@touch make_bonus
+# 			@rm -f make_all
 
 clean :
-	cd $(SRCDIR_LIBFT)
-	$(MAKE) clean
-	cd ..
-	rm -f $(OBJECTS) $(OBJECTS_BONUS)
-	rm -f make_all make_bonus
+	cd $(DIR_LIBFT); $(MAKE) clean
+	rm -f $(OBJECTS)
+	rm -f make_all
 
-fclean : clean
-	cd $(SRCDIR_LIBFT)
-	$(MAKE) fclean
-	cd ..
+fclean :
+	$(MAKE) clean
+	cd $(DIR_LIBFT); $(MAKE) fclean
 	rm -f $(NAME)
 
-re : fclean all
+re :
+	$(MAKE) fclean
+	$(MAKE) all
