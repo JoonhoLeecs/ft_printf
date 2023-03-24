@@ -6,14 +6,12 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:01:40 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/24 20:15:03 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:30:52 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
-
-static void	ft_putfield(void *s);
 
 int	ft_printf(const char *str, ...)
 {
@@ -31,17 +29,9 @@ int	ft_printf(const char *str, ...)
 		str = ft_str_to_fieldlst((char *)str, va_ptr, &field_lst);
 	num_char = ft_lstiter_strlensum(field_lst);
 	if (num_char != -1)
-		ft_lstiter(field_lst, &ft_putfield);
+		if (ft_print_fields(field_lst) < 0)
+			num_char = -1;
 	ft_lstclear(&field_lst, &ft_clear_field);
 	va_end(va_ptr);
 	return (num_char);
-}
-
-static void	ft_putfield(void *content)
-{
-	t_field	*ptr;
-	int		check;
-
-	ptr = (t_field *)content;
-	check = write(1, ptr->str, ptr->len);
 }

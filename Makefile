@@ -20,7 +20,8 @@ SRC = ft_capx_to_field.c \
 		ft_u_to_field.c \
 		ft_ulltostr_base.c \
 		ft_x_to_field.c \
-		ft_convert_empty_str.c
+		ft_convert_empty_str.c \
+		ft_print_fields.c
 
 OBJECTS = $(SRC:.c=.o)
 NAME = libftprintf.a

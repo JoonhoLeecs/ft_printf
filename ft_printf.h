@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:30:00 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/24 19:49:07 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:28:34 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ t_field	*ft_capx_to_field(unsigned int capx);
 char	*ft_ulltostr_base(t_ull nbr_decimal, char *base_to);
 char	*ft_lltostr_base(long long nbr_decimal, char *base_to);
 int		ft_lstiter_strlensum(t_list *lst);
+int		ft_print_fields(t_list *field_lst);
 
 #endif
