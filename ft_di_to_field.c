@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_terminate_on_error.c                            :+:      :+:    :+:   */
+/*   ft_di_to_field.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 10:58:42 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/24 13:13:26 by joonhlee         ###   ########.fr       */
+/*   Created: 2023/03/24 16:31:09 by joonhlee          #+#    #+#             */
+/*   Updated: 2023/03/24 16:34:16 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-char	*ft_terminate_on_error(char *str, t_list **field_lst)
+t_field	*ft_di_to_field(int d)
 {
-	t_list	*last_node;
+	char	*raw_str;
+	t_field	*new_field;
 
-	if (*field_lst != 0)
-	{
-		last_node = ft_lstlast(*field_lst);
-		ft_clear_field(last_node->content);
-		last_node->content = 0;
-	}
-	return (str + ft_strlen(str));
+	raw_str = ft_itoa(d);
+	if (raw_str == 0)
+		return (0);
+	new_field = ft_newfield(raw_str, ft_strlen(raw_str));
+	if (new_field == 0)
+		free(raw_str);
+	return (new_field);
 }

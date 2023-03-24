@@ -6,73 +6,59 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 10:36:47 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 18:52:00 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:21:52 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static char	*ft_format_tag_to_raw_str(char *str, va_list va_ptr, int *ne);
-static char	*ft_u_tag_to_str(unsigned int n);
-static char	*ft_x_tag_to_str(unsigned int n);
-static char	*ft_capx_tag_to_str(unsigned int n);
+static t_field	*ft_argument_to_field(char *str, va_list va_ptr);
 
-char	*ft_convert_format(char *str, va_list va_ptr, t_list **fields, int *ne)
+char	*ft_convert_format(char *str, va_list va_ptr, t_list **field_lst)
 {
-	char	*new_content;
-	t_list	*new_field;
+	t_field	*new_field;
+	t_list	*new_node;
 
-	new_content = ft_format_tag_to_raw_str(str, va_ptr, ne);
-	if (new_content == 0)
-		return (ft_terminate_on_error(str, fields));
-	new_field = ft_lstnew(new_content);
+	new_field = ft_argument_to_field(str + 1, va_ptr);
 	if (new_field == 0)
-		return (ft_terminate_on_error(str, fields));
-	ft_lstadd_back(fields, new_field);
-	return ((char *)(str + 2));
+		return (ft_terminate_on_error(str, field_lst));
+	new_node = ft_lstnew(new_field);
+	if (new_node == 0)
+	{
+		ft_clear_field(new_field);
+		new_field = 0;
+		return (ft_terminate_on_error(str, field_lst));
+	}
+	ft_lstadd_back(field_lst, new_node);
+	return (str + 2);
 }
 
-static char	*ft_format_tag_to_raw_str(char *str, va_list va_ptr, int *ne)
+static t_field	*ft_argument_to_field(char *str, va_list va_ptr)
 {
 	char	*format_specifier_pool;
 	char	*specifier;
 
 	format_specifier_pool = "cspdiuxX%";
-	specifier = ft_strchr(format_specifier_pool, *(str + 1));
+	specifier = ft_strchr(format_specifier_pool, *str);
 	if (specifier == 0)
 		return (0);
 	else if (specifier - format_specifier_pool == 0)
-		return (ft_chr_to_str((char) va_arg(va_ptr, int), ne));
+		return (ft_chr_to_field((char) va_arg(va_ptr, int)));
 	else if (specifier - format_specifier_pool == 1)
-		return (ft_strdup(va_arg(va_ptr, char *)));
+		return (ft_str_to_field(va_arg(va_ptr, char *)));
 	else if (specifier - format_specifier_pool == 2)
-		return (ft_ptraddress_to_str(va_arg(va_ptr, void *)));
+		return (ft_ptraddress_to_field(va_arg(va_ptr, void *)));
 	else if (specifier - format_specifier_pool == 3
 		|| specifier - format_specifier_pool == 4)
-		return (ft_itoa(va_arg(va_ptr, int)));
+		return (ft_di_to_field(va_arg(va_ptr, int)));
 	else if (specifier - format_specifier_pool == 5)
-		return (ft_u_tag_to_str(va_arg(va_ptr, unsigned int)));
+		return (ft_u_to_field(va_arg(va_ptr, unsigned int)));
 	else if (specifier - format_specifier_pool == 6)
-		return (ft_x_tag_to_str(va_arg(va_ptr, unsigned int)));
+		return (ft_x_to_field(va_arg(va_ptr, unsigned int)));
 	else if (specifier - format_specifier_pool == 7)
-		return (ft_capx_tag_to_str(va_arg(va_ptr, unsigned int)));
+		return (ft_capx_to_field(va_arg(va_ptr, unsigned int)));
 	else if (specifier - format_specifier_pool == 8)
-		return (ft_chr_to_str('%', ne));
+		return (ft_chr_to_field('%'));
 	return (0);
-}
-
-static char	*ft_u_tag_to_str(unsigned int n)
-{
-	return (ft_ulltostr_base(n, "0123456789"));
-}
-
-static char	*ft_x_tag_to_str(unsigned int n)
-{
-	return (ft_ulltostr_base(n, "0123456789abcdef"));
-}
-
-static char	*ft_capx_tag_to_str(unsigned int n)
-{
-	return (ft_ulltostr_base(n, "0123456789ABCDEF"));
 }

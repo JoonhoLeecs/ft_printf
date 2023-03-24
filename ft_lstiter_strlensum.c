@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:09:40 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 18:30:36 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:55:55 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 
 int	ft_lstiter_strlensum(t_list *lst)
 {
-	int	sum;
+	int		sum;
+	t_field	*field_content;
 
 	sum = 0;
 	if (lst == 0)
 		return (-1);
 	while (lst)
 	{
-		if (lst->content == 0)
+		field_content = lst->content;
+		if (field_content == 0)
 			return (-1);
-		sum += ft_strlen(lst->content);
+		sum += field_content->len;
 		lst = lst->next;
 	}
 	return (sum);

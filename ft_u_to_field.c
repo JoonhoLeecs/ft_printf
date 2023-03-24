@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptraddress_to_str.c                             :+:      :+:    :+:   */
+/*   ft_u_to_field.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 13:06:06 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 17:39:04 by joonhlee         ###   ########.fr       */
+/*   Created: 2023/03/24 16:44:12 by joonhlee          #+#    #+#             */
+/*   Updated: 2023/03/24 16:45:35 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-char	*ft_ptraddress_to_str(void *ptr)
+t_field	*ft_u_to_field(unsigned int u)
 {
-	unsigned long long	address;
-	char				*raw_str;
-	char				*result;
+	char	*raw_str;
+	t_field	*new_field;
 
-	address = (unsigned long long) ptr;
-	raw_str = ft_ulltostr_base(address, "0123456789abcdef");
+	raw_str = ft_ulltostr_base(u, "0123456789");
 	if (raw_str == 0)
 		return (0);
-	result = ft_strjoin("0x", raw_str);
-	free(raw_str);
-	return (result);
+	new_field = ft_newfield(raw_str, ft_strlen(raw_str));
+	if (new_field == 0)
+		free(raw_str);
+	return (new_field);
 }

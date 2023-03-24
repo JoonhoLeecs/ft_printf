@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_to_fields.c                                 :+:      :+:    :+:   */
+/*   ft_newfield.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 17:23:16 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 18:39:34 by joonhlee         ###   ########.fr       */
+/*   Created: 2023/03/24 10:53:44 by joonhlee          #+#    #+#             */
+/*   Updated: 2023/03/24 10:56:48 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-char	*ft_str_to_fields(char *str, va_list va_ptr, t_list **fields, int *ne)
+t_field	*ft_newfield(char *str, size_t len)
 {
-	char	*ptr_next_field;
+	t_field	*new_field;
 
-	if (*str != '%')
-		return (ft_chrs_to_field(str, fields));
-	if (ft_strlen(str) == 1)
-		return (ft_terminate_on_error(str, fields));
-	ptr_next_field = ft_convert_format(str, va_ptr, fields, ne);
-	return (ptr_next_field);
+	new_field = (t_field *) malloc(sizeof(t_field));
+	if (new_field == 0)
+		return (0);
+	new_field->str = str;
+	new_field->len = len;
+	return (new_field);
 }

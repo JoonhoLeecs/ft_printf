@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_terminate_on_error.c                            :+:      :+:    :+:   */
+/*   ft_str_to_fieldlst.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 10:58:42 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/24 13:13:26 by joonhlee         ###   ########.fr       */
+/*   Created: 2023/03/22 17:23:16 by joonhlee          #+#    #+#             */
+/*   Updated: 2023/03/24 11:27:13 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-char	*ft_terminate_on_error(char *str, t_list **field_lst)
+char	*ft_str_to_fieldlst(char *str, va_list va_ptr, t_list **field_lst)
 {
-	t_list	*last_node;
+	char	*ptr_next_field;
 
-	if (*field_lst != 0)
-	{
-		last_node = ft_lstlast(*field_lst);
-		ft_clear_field(last_node->content);
-		last_node->content = 0;
-	}
-	return (str + ft_strlen(str));
+	if (*str != '%')
+		return (ft_chrs_to_field(str, field_lst));
+	if (ft_strlen(str) == 1)
+		return (ft_terminate_on_error(str, field_lst));
+	ptr_next_field = ft_convert_format(str, va_ptr, field_lst);
+	return (ptr_next_field);
 }
