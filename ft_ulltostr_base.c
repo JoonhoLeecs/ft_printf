@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:22:14 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 17:38:58 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:52:40 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ char	*ft_ulltostr_base(t_ull nbr_decimal, char *base_to)
 {
 	char	*result;
 	int		res_ind;
+	int		n_digits;
 
-	result = (char *)malloc(count_digit(nbr_decimal, base_to) + 1);
+	n_digits = count_digit(nbr_decimal, base_to);
+	result = (char *)malloc((n_digits + 1) * sizeof(char));
 	if (result == 0)
 		return (0);
 	res_ind = 0;
-	while (res_ind < count_digit(nbr_decimal, base_to) + 1)
+	while (res_ind < n_digits + 1)
 		result[res_ind++] = 0;
 	res_ind = 0;
 	recur_ulltostr(result, &res_ind, nbr_decimal, base_to);
@@ -85,7 +87,7 @@ static void	recur_ulltostr(char *result, int *res_ind, t_ull nbr, char *base)
 		result[*res_ind] = base[nbr % l_base];
 		*res_ind += 1;
 	}
-	if (nbr / l_base > 0)
+	if (nbr / l_base != 0)
 	{
 		recur_ulltostr(result, res_ind, nbr / l_base, base);
 		recur_ulltostr(result, res_ind, nbr % l_base, base);

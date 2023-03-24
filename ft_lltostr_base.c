@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_longtostr_base.c                                :+:      :+:    :+:   */
+/*   ft_lltostr_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:18:47 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/23 17:39:17 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:16:01 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "ft_printf.h"
 
 static int	base_length_check(char *base);
-static int	count_digit(long nbr_decimal, char *base_to);
-static void	recur_longtostr(char *result, int *res_ind, long nbr, char *base);
+static int	count_digit(long long nbr_decimal, char *base_to);
+static void	rec_lltostr(char *result, int *res_ind, long long nbr, char *base);
 
-char	*ft_longtostr_base(long nbr_decimal, char *base_to)
+char	*ft_lltostr_base(long long nbr_decimal, char *base_to)
 {
 	char	*result;
 	int		res_ind;
@@ -29,7 +29,7 @@ char	*ft_longtostr_base(long nbr_decimal, char *base_to)
 	while (res_ind < count_digit(nbr_decimal, base_to) + 1)
 		result[res_ind++] = 0;
 	res_ind = 0;
-	recur_longtostr(result, &res_ind, nbr_decimal, base_to);
+	rec_lltostr(result, &res_ind, nbr_decimal, base_to);
 	result[res_ind] = '\0';
 	return (result);
 }
@@ -60,12 +60,12 @@ static int	base_length_check(char *base)
 	return (i);
 }
 
-static int	count_digit(long nbr_decimal, char *base_to)
+static int	count_digit(long long nbr_decimal, char *base_to)
 {
-	long	l_base;
-	int		n_digits;
+	long long	l_base;
+	int			n_digits;
 
-	l_base = (long)base_length_check(base_to);
+	l_base = (long long)base_length_check(base_to);
 	n_digits = 1;
 	if (nbr_decimal < 0)
 		n_digits += 1;
@@ -77,18 +77,18 @@ static int	count_digit(long nbr_decimal, char *base_to)
 	return (n_digits);
 }
 
-static void	recur_longtostr(char *result, int *res_ind, long nbr, char *base)
+static void	rec_lltostr(char *result, int *res_ind, long long nbr, char *base)
 {
-	long	l_base;
+	long long	l_base;
 
-	l_base = (long)base_length_check(base);
+	l_base = (long long)base_length_check(base);
 	if (nbr < 0)
 	{
 		result[*res_ind] = '-';
 		*res_ind += 1;
 		if (nbr / l_base != 0)
-			recur_longtostr(result, res_ind, (nbr / l_base) * -1, base);
-		recur_longtostr(result, res_ind, (nbr % l_base) * -1, base);
+			rec_lltostr(result, res_ind, (nbr / l_base) * -1, base);
+		rec_lltostr(result, res_ind, (nbr % l_base) * -1, base);
 	}
 	if (nbr / l_base == 0)
 	{
@@ -97,7 +97,7 @@ static void	recur_longtostr(char *result, int *res_ind, long nbr, char *base)
 	}
 	if (nbr / l_base > 0)
 	{
-		recur_longtostr(result, res_ind, nbr / l_base, base);
-		recur_longtostr(result, res_ind, nbr % l_base, base);
+		rec_lltostr(result, res_ind, nbr / l_base, base);
+		rec_lltostr(result, res_ind, nbr % l_base, base);
 	}
 }

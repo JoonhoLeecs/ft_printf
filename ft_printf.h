@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:30:00 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/24 16:50:48 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:49:07 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ typedef struct s_field
 	size_t	len;
 }			t_field;
 
-typedef long long int	t_ull;
+typedef unsigned long long	t_ull;
 
 int		ft_printf(const char *str, ...);
+void	ft_convert_empty_str(t_list **field_lst, char *str);
 char	*ft_str_to_fieldlst(char *str, va_list va_ptr, t_list **field_lst);
 char	*ft_chrs_to_field(char *str, t_list **field_lst);
 t_field	*ft_newfield(char *str, size_t len);
@@ -41,8 +42,7 @@ t_field	*ft_u_to_field(unsigned int u);
 t_field	*ft_x_to_field(unsigned int x);
 t_field	*ft_capx_to_field(unsigned int capx);
 char	*ft_ulltostr_base(t_ull nbr_decimal, char *base_to);
-char	*ft_longtostr_base(long nbr_decimal, char *base_to);
+char	*ft_lltostr_base(long long nbr_decimal, char *base_to);
 int		ft_lstiter_strlensum(t_list *lst);
-
 
 #endif

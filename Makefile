@@ -8,7 +8,7 @@ SRC = ft_capx_to_field.c \
 		ft_clear_field.c \
 		ft_convert_format.c \
 		ft_di_to_field.c \
-		ft_longtostr_base.c \
+		ft_lltostr_base.c \
 		ft_lstiter_strlensum.c \
 		ft_new_fieldnode_free.c \
 		ft_newfield.c \
@@ -19,7 +19,8 @@ SRC = ft_capx_to_field.c \
 		ft_terminate_on_error.c \
 		ft_u_to_field.c \
 		ft_ulltostr_base.c \
-		ft_x_to_field.c
+		ft_x_to_field.c \
+		ft_convert_empty_str.c
 
 OBJECTS = $(SRC:.c=.o)
 NAME = libftprintf.a

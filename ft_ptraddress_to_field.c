@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:06:06 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/24 16:29:58 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:55:38 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_field	*ft_ptraddress_to_field(void *ptr)
 	char				*raw_address;
 	char				*raw_str;
 	t_field				*new_field;
-
 
 	address = (unsigned long long) ptr;
 	raw_address = ft_ulltostr_base(address, "0123456789abcdef");
