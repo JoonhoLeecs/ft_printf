@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC = ft_atoi.c \
 		ft_bzero.c \

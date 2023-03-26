@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 DIR_LIBFT = ./libft/
 LIBFT = libft.a
@@ -8,7 +8,6 @@ SRC = ft_capx_to_field.c \
 		ft_clear_field.c \
 		ft_convert_format.c \
 		ft_di_to_field.c \
-		ft_lltostr_base.c \
 		ft_lstiter_strlensum.c \
 		ft_new_fieldnode_free.c \
 		ft_newfield.c \

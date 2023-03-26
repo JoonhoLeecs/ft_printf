@@ -6,7 +6,7 @@
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 10:36:47 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/24 17:21:52 by joonhlee         ###   ########.fr       */
+/*   Updated: 2023/03/26 10:34:17 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,16 @@ char	*ft_convert_format(char *str, va_list va_ptr, t_list **field_lst)
 {
 	t_field	*new_field;
 	t_list	*new_node;
+	char	*ptr_next;
 
-	new_field = ft_argument_to_field(str + 1, va_ptr);
+	ptr_next = str + 2;
+	if (*(str + 1) == 0)
+	{
+		new_field = ft_str_to_field("");
+		ptr_next = str + 1;
+	}
+	else
+		new_field = ft_argument_to_field(str + 1, va_ptr);
 	if (new_field == 0)
 		return (ft_terminate_on_error(str, field_lst));
 	new_node = ft_lstnew(new_field);
@@ -31,7 +39,7 @@ char	*ft_convert_format(char *str, va_list va_ptr, t_list **field_lst)
 		return (ft_terminate_on_error(str, field_lst));
 	}
 	ft_lstadd_back(field_lst, new_node);
-	return (str + 2);
+	return (ptr_next);
 }
 
 static t_field	*ft_argument_to_field(char *str, va_list va_ptr)
@@ -42,7 +50,7 @@ static t_field	*ft_argument_to_field(char *str, va_list va_ptr)
 	format_specifier_pool = "cspdiuxX%";
 	specifier = ft_strchr(format_specifier_pool, *str);
 	if (specifier == 0)
-		return (0);
+		return (ft_chr_to_field(*str));
 	else if (specifier - format_specifier_pool == 0)
 		return (ft_chr_to_field((char) va_arg(va_ptr, int)));
 	else if (specifier - format_specifier_pool == 1)
