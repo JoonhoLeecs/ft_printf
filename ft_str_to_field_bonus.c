@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_strlensum.c                             :+:      :+:    :+:   */
+/*   ft_str_to_field_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joonhlee <joonhlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 09:09:40 by joonhlee          #+#    #+#             */
-/*   Updated: 2023/03/24 16:55:55 by joonhlee         ###   ########.fr       */
+/*   Created: 2023/03/24 16:10:32 by joonhlee          #+#    #+#             */
+/*   Updated: 2023/04/11 07:12:01 by joonhlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	ft_lstiter_strlensum(t_list *lst)
+t_field	*ft_str_to_field(char *str)
 {
-	int		sum;
-	t_field	*field_content;
+	char	*raw_str;
+	t_field	*new_field;
 
-	sum = 0;
-	if (lst == 0)
-		return (-1);
-	while (lst)
-	{
-		field_content = lst->content;
-		if (field_content == 0)
-			return (-1);
-		sum += field_content->len;
-		lst = lst->next;
-	}
-	return (sum);
+	if (str == 0)
+		raw_str = ft_strdup("(null)");
+	else
+		raw_str = ft_strdup(str);
+	if (raw_str == 0)
+		return (0);
+	new_field = ft_newfield(raw_str, ft_strlen(raw_str));
+	if (new_field == 0)
+		free(raw_str);
+	return (new_field);
 }
